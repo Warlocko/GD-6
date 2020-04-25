@@ -16,15 +16,15 @@ exports.store = (req, res) => {
   Task.create(task).then((id) => {
     // if the request is expecting an ajax or json response
     if (req.xhr || req.headers.accept.indexOf('json') > -1) {
-      Task.find(id).then((task) => res.redirect('localhost:3000/')
+      Task.find(id).then((task) => res.json(task));
     } else {
-      res.redirect('localhost:3000/');
+      res.redirect("http://localhost:3000/")
     }
   });
 }
 
 exports.getTasks = (req, res) => {
-  let tasks = Task.all().then((tasks) => {
+  Task.all().then((tasks) => {
     res.json({todos: tasks});
   });
 };
@@ -39,10 +39,10 @@ exports.finished = (req,res) => {
     .then(() => {
       if (req.xhr || req.headers.accept.indexOf("json") >= 0) {
         Task.find(req.params.id).then(task => {
-          res.json(task);
+          res.json(task)
         });
       } else {
-        res.redirect('localhost:3000/');
+        res.redirect("http://localhost:3000/")
       }
     });
   };
@@ -56,9 +56,9 @@ exports.finished = (req,res) => {
     })
     .then(() => {
       if (req.xhr || req.headers.accept.indexOf("json") >= 0) {
-        res.json({ id: req.params.id });
+        res.json({ id: req.params.id })
       } else {
-        res.redirect('localhost:3000/');
+        res.redirect("http://localhost:3000/")
       }
     });
   }

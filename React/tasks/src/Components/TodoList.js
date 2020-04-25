@@ -22,10 +22,22 @@ class TodoList extends React.Component {
               }
           )
     }
+
+
     render() {
         const todos = this.state;
         return(
             <div>
+                <div className="taskInput">
+                    <form action={"http://localhost:4000/tasks"} method="POST" id="taskForm">
+                        <input id="taskDescription"
+                            type="text"
+                            name="description"
+                            placeholder="I have to..."
+                            class="form-control"></input>
+                        <input type="submit" value="Add" className="btn btn-success" id="taskBtn"></input>
+                    </form>
+                </div>
                 <div className="todoContainer">
                     {todos.todos.map((todo) => (
                         <Todo id={todo.id} description={todo.description} status={todo.status}/>

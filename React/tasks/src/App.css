@@ -95,6 +95,23 @@ body{
   line-height: 80px;
 }
 
+.taskInput{
+  width: 80%;
+  margin-left: 10%;
+}
+
+#taskForm{
+  display: flex;
+}
+#taskDescription{
+  width: 80%;
+}
+
+#taskBtn{
+  width: 20%;
+  margin: 0;
+}
+
 .completed{
   background-color: #36393F;
   color: white;
