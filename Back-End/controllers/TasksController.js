@@ -7,6 +7,7 @@ exports.done = (req, res) => {
     return Task.finished(task);
   })
   .then((result) => {
+    res.redirect("http://localhost:3000/")
   });
 }
 
@@ -16,7 +17,8 @@ exports.store = (req, res) => {
   Task.create(task).then((id) => {
     // if the request is expecting an ajax or json response
     if (req.xhr || req.headers.accept.indexOf('json') > -1) {
-      Task.find(id).then((task) => res.json(task));
+      Task.find(id).then((task) => res.json(task),
+      res.redirect("http://localhost:3000/"))
     } else {
       res.redirect("http://localhost:3000/")
     }
@@ -28,24 +30,6 @@ exports.getTasks = (req, res) => {
     res.json({todos: tasks});
   });
 };
-
-exports.finished = (req,res) => {
-  Task.find(req.params.id)
-    .then(task => {
-      if (task) {
-        return Task.finished(req.params.id);
-      }
-    })
-    .then(() => {
-      if (req.xhr || req.headers.accept.indexOf("json") >= 0) {
-        Task.find(req.params.id).then(task => {
-          res.json(task)
-        });
-      } else {
-        res.redirect("http://localhost:3000/")
-      }
-    });
-  };
 
   exports.destroy = (req,res) => {
     Task.find(req.params.id)

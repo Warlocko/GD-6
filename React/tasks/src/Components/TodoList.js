@@ -34,7 +34,7 @@ class TodoList extends React.Component {
                             type="text"
                             name="description"
                             placeholder="I have to..."
-                            class="form-control"></input>
+                            className="form-control"></input>
                         <input type="submit" value="Add" className="btn btn-success" id="taskBtn"></input>
                     </form>
                 </div>

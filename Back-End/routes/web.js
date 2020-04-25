@@ -7,7 +7,7 @@ router.get('/', homepageController.index);
 router.get('/tasks', tasksController.getTasks)
 router.post('/tasks', tasksController.store);
 
-router.post('/tasks/:id/done', tasksController.done);
+router.post('/tasks/done/:id', tasksController.done);
 
 router.post('/tasks/:id', tasksController.destroy);
 

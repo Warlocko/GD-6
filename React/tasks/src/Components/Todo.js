@@ -23,7 +23,7 @@ class Todo extends React.Component {
                     <p className="cardText">Id: {this.state.id}</p>
                     <p className="cardText">Task: {this.state.description}</p>
                     <div className="btn-container">
-                          <form action={"http://localhost:4000/tasks/"+this.state.id+"/done/"} className={`${this.state.status=="done" ? "done":""}`} method="POST">
+                          <form action={"http://localhost:4000/tasks/done/"+this.state.id} className={`${this.state.status=="done" ? "done":""}`} method="POST">
                                 <input type="submit" value="Done" className="btn btn-success"></input>
                             </form>
                             <form action={"http://localhost:4000/tasks/"+this.state.id} method="POST">
