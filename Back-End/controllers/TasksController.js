@@ -7,7 +7,6 @@ exports.done = (req, res) => {
     return Task.finished(task);
   })
   .then((result) => {
-    res.redirect('/');
   });
 }
 
@@ -17,12 +16,18 @@ exports.store = (req, res) => {
   Task.create(task).then((id) => {
     // if the request is expecting an ajax or json response
     if (req.xhr || req.headers.accept.indexOf('json') > -1) {
-      Task.find(id).then((task) => res.json(task));
+      Task.find(id).then((task) => res.redirect('localhost:3000/')
     } else {
-      res.redirect('/');
+      res.redirect('localhost:3000/');
     }
   });
 }
+
+exports.getTasks = (req, res) => {
+  let tasks = Task.all().then((tasks) => {
+    res.json({todos: tasks});
+  });
+};
 
 exports.finished = (req,res) => {
   Task.find(req.params.id)
@@ -37,7 +42,7 @@ exports.finished = (req,res) => {
           res.json(task);
         });
       } else {
-        res.redirect("/");
+        res.redirect('localhost:3000/');
       }
     });
   };
@@ -53,7 +58,7 @@ exports.finished = (req,res) => {
       if (req.xhr || req.headers.accept.indexOf("json") >= 0) {
         res.json({ id: req.params.id });
       } else {
-        res.redirect("/");
+        res.redirect('localhost:3000/');
       }
     });
   }

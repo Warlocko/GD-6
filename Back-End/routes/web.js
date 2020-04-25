@@ -4,6 +4,7 @@ const tasksController = require('../controllers/TasksController');
 
 router.get('/', homepageController.index);
 
+router.get('/tasks', tasksController.getTasks)
 router.post('/tasks', tasksController.store);
 
 router.post('/tasks/:id/done', tasksController.done);

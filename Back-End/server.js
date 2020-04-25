@@ -4,6 +4,7 @@ const webRoutes = require('./routes/web');
 
 // Express app creation
 const app = express();
+var cors = require('cors')
 
 // Configurations
 const appConfig = require('./configs/app');
@@ -24,6 +25,11 @@ app.use(express.static('public'));
 // Receive parameters from the Form requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
+
 
 // Routes
 app.use('/', webRoutes);
